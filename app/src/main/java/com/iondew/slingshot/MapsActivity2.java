@@ -28,6 +28,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
     }
 
 
@@ -68,6 +69,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
+
         Toast.makeText(this, "lat, lon: " + location.getLatitude() + ", " + location.getLongitude(), Toast.LENGTH_LONG).show();
     }
 }

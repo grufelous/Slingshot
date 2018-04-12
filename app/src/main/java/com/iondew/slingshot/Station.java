@@ -42,4 +42,11 @@ public class Station {
         }
         return isIt;
     }
+
+    public boolean inBounds(LatLng userLoc) {
+        boolean inBounds = false;
+        double dist = Math.sqrt(Math.pow(coordinates.latitude - userLoc.latitude, 2) + Math.pow(coordinates.longitude - userLoc.longitude, 2));
+
+        return inBounds;
+    }
 }
