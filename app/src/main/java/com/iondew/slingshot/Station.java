@@ -8,19 +8,38 @@ public class Station {
     private String name;
     private int index, numStations;
     private LatLng coordinates;
-    private boolean isConnector = false, isTerminal = false;
+    private boolean connector = false, terminal = false;
     private ArrayList<String> colors = new ArrayList<>();
 
     public Station(int index, int numStations, String name, ArrayList<String> colors, double lat, double lon) {
         this.index = index;
         this.numStations = numStations;
         if((index == 0) || (index+1 == numStations)) {
-            isTerminal = true;
+            terminal = true;
         }
         if(colors.size() > 1) {
-            isConnector = true;
+            connector = true;
         }
         this.coordinates = new LatLng(lat, lon);
+    }
 
+    public boolean isConnector() {
+        return connector;
+    }
+
+    public boolean isTerminal() {
+        return terminal;
+    }
+
+    public ArrayList<String> getColors() {
+        return colors;
+    }
+
+    public boolean isColor(String colorToCheck) {
+        boolean isIt = false;
+        if (colors.contains(colorToCheck)) {
+            isIt = true;
+        }
+        return isIt;
     }
 }
