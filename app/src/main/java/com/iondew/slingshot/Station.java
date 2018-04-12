@@ -4,6 +4,10 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+import static com.iondew.slingshot.HelperClass.latToMeters;
+import static com.iondew.slingshot.HelperClass.lonToMeters;
+
+
 public class Station {
     private String name;
     private int index, numStations;
@@ -45,8 +49,10 @@ public class Station {
 
     public boolean inBounds(LatLng userLoc) {
         boolean inBounds = false;
-        double dist = Math.sqrt(Math.pow(coordinates.latitude - userLoc.latitude, 2) + Math.pow(coordinates.longitude - userLoc.longitude, 2));
-
+        double dist = Math.sqrt(Math.pow(latToMeters(coordinates.latitude - userLoc.latitude), 2) + Math.pow(lonToMeters(coordinates.longitude - userLoc.longitude), 2));
+        if(dist <= 200) {
+            inBounds = true;
+        }
         return inBounds;
     }
 }
