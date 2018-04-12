@@ -44,10 +44,7 @@ public class Station {
 
     public boolean inBounds(LatLng userLoc) {
         boolean inBounds = false;
-        double dist = Math.sqrt(Math.pow(latToMeters(coordinates.latitude - userLoc.latitude), 2) + Math.pow(lonToMeters(coordinates.longitude - userLoc.longitude), 2));
-        if(dist <= 200) {
-            inBounds = true;
-        }
+        inBounds = HelperClass.inBounds(userLoc, coordinates);
         return inBounds;
     }
 }
