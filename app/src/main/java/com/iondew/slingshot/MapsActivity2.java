@@ -1,6 +1,7 @@
 package com.iondew.slingshot;
 
 import android.location.Location;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
     private static String TAG = "MAPTAG";
     private GoogleMap mMap;
-
+    private LocationManager locationManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +27,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
     }
 
 
@@ -41,20 +43,21 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
         try {
             mMap.setMyLocationEnabled(true);
             mMap.setOnMyLocationButtonClickListener(this);
             mMap.setOnMyLocationClickListener(this);
+
+            //LatLng presentLoc = new LatLng(-34, 151);
+            //mMap.addMarker(new MarkerOptions().position(presentLoc).title("Marker on you"));
+            //mMap.moveCamera(CameraUpdateFactory.newLatLng(presentLoc));
+            //mMap.moveCamera(CameraUpdateFactory.newLatLng(mMap.));
         } catch (SecurityException s) {
             Log.d(TAG, "onMapReady: SecurityException reached");
         }
 
         
-        LatLng presentLoc = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(presentLoc).title("Marker on you"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(presentLoc));
+
     }
 
     @Override
@@ -65,6 +68,6 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
-        Toast.makeText(this, "Loc: " + location, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "lat, lon: " + location.getLatitude() + ", " + location.getLongitude(), Toast.LENGTH_LONG).show();
     }
 }
