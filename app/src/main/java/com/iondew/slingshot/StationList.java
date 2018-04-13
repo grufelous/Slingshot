@@ -36,6 +36,7 @@ public class StationList {
         return temp;
     }
     ArrayList<Station> blue_stations= new ArrayList<Station>();
+    ArrayList<Station> yellow_stations= new ArrayList<Station>();
     ArrayList<String> colorList;
     StationList() {
         blue_stations.add(new Station(0,44,"Dwarka Sec-21", color_list_1("blue"),28.552322,77.058383));
@@ -83,7 +84,7 @@ public class StationList {
         blue_stations.add(new Station(42,44,"Golf Course", color_list_1("blue"),28.567175,77.345992));
         blue_stations.add(new Station(43,44,"Noida City Center", color_list_1("blue"),28.,77.356026));
 
-        ArrayList<Station> yellow_stations= new ArrayList<Station>();
+
 
         yellow_stations.add(new Station(44, 10, "Lok Kalyan Marg", color_list_1("yellow"), 28.5969129, 77.2108892));
         yellow_stations.add(new Station(45, 10, "Jorbagh", color_list_1("yellow"), 28.5861923, 77.2116617));
