@@ -14,13 +14,14 @@ import android.support.v4.app.NotificationCompat;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button btGo;
+    Button btGo,btPayTM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btGo = findViewById(R.id.btGo);
+        btPayTM=findViewById(R.id.btPayTM);
         btGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -30,6 +31,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        btPayTM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent launchIntent = getPackageManager().getLaunchIntentForPackage("net.one97.paytm");
+                if (launchIntent != null) {
+                    startActivity(launchIntent);//null pointer check in case package name was not found
+                }
+
+            }
+        });
+
+        
     }
     /*private void addNotification(){
 
@@ -46,3 +60,4 @@ public class MainActivity extends AppCompatActivity {
 
     }*/
 }
+
