@@ -36,8 +36,11 @@ public class StationList {
         return temp;
     }
     ArrayList<Station> blue_stations= new ArrayList<Station>();
-    ArrayList<String> colorList;
+
+    ArrayList<Station> yellow_stations= new ArrayList<Station>();
+    //ArrayList<String> colorList;
     StationList() {
+        ArrayList<String> colorList;
         blue_stations.add(new Station(0,44,"Dwarka Sec-21", color_list_1("blue"),28.552322,77.058383));
         blue_stations.add(new Station(1,44,"Dwarka Sec-08", color_list_1("blue"),28.565622,77.067015));
         blue_stations.add(new Station(2,44,"Dwarka Sec-09",color_list_1("blue"),28.574448,77.065171));
@@ -82,12 +85,7 @@ public class StationList {
         blue_stations.add(new Station(41,44,"Botanical Garden",color_list_2("blue","pink"),28.56404,77.334269));
         blue_stations.add(new Station(42,44,"Golf Course", color_list_1("blue"),28.567175,77.345992));
         blue_stations.add(new Station(43,44,"Noida City Center", color_list_1("blue"),28.,77.356026));
-}
 
-
-    ArrayList<Station> yellow_stations= new ArrayList<Station>();
-    ArrayList<String> colorList;
-    StationList() {
         yellow_stations.add(new Station(44, 10, "Lok Kalyan Marg", color_list_1("yellow"), 28.5969129, 77.2108892));
         yellow_stations.add(new Station(45, 10, "Jorbagh", color_list_1("yellow"), 28.5861923, 77.2116617));
         yellow_stations.add(new Station(46, 10, "INA", color_list_1("yellow"), 28.5730116, 77.2077135));
@@ -100,7 +98,5 @@ public class StationList {
         yellow_stations.add(new Station(53, 10, "Chattarpur", color_list_1("yellow"), 28.5075953, 77.1754527));
         yellow_stations.add(new Station(54, 10, "Sultanpur", color_list_1("yellow"), 28.4992649, 77.1591741));
         yellow_stations.add(new Station(55, 10, "Ghittorni", color_list_1("yellow"), 28.4943713, 77.1490997));
-
-
     }
 }

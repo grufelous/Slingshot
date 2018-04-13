@@ -24,16 +24,16 @@ public class MainActivity extends AppCompatActivity {
         btGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addNotification();
-                Log.d("notif","notified");
-                //Intent i = new Intent(MainActivity.this, MapsActivity.class);
-                //startActivity(i);
+                //addNotification();
+                //Log.d("notif","notified");
+                Intent i = new Intent(MainActivity.this, MapsActivity2.class);
+                startActivity(i);
             }
         });
 
 
     }
-    private void addNotification(){
+    /*private void addNotification(){
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_slingshot_logo)
@@ -46,5 +46,5 @@ public class MainActivity extends AppCompatActivity {
         int notificationId=1000;
         notificationManager.notify(notificationId, mBuilder.build());
 
-    }
+    }*/
 }

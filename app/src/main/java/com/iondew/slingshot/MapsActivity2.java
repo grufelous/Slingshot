@@ -1,9 +1,12 @@
 package com.iondew.slingshot;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,10 +42,12 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        mapFragment.getMapAsync(this);
+        //setUpMapIfNeeded();
+
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mapFragment.getMapAsync(this);
     }
 
 
@@ -60,14 +65,14 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         mMap = googleMap;
         try {
 
-            //LatLng presentLoc = new LatLng(-34, 151);
-            //mMap.addMarker(new MarkerOptions().position(presentLoc).title("Marker on you"));
-            //mMap.moveCamera(CameraUpdateFactory.newLatLng(presentLoc));
+            LatLng presentLoc = new LatLng(-34, 151);
+            mMap.addMarker(new MarkerOptions().position(presentLoc).title("Marker on you"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(presentLoc));
             //mMap.moveCamera(CameraUpdateFactory.newLatLng(mMap.));
 
             mLocationRequest = new LocationRequest();
-            mLocationRequest.setInterval(2000); // two minute interval
-            mLocationRequest.setFastestInterval(120000);
+            mLocationRequest.setInterval(2000);
+            mLocationRequest.setFastestInterval(2000);
             mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
             mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
@@ -81,9 +86,43 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
             Log.d(TAG, "onMapReady: SecurityException reached");
         }
 
-        
 
     }
+
+    /*private void setUpMapIfNeeded() {
+        // Do a null check to confirm that we have not already instantiated the map.
+        if (mMap == null) {
+            // Try to obtain the map from the SupportMapFragment.
+            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+                    .getMap();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            mMap.setMyLocationEnabled(true);
+            // Check if we were successful in obtaining the map.
+            if (mMap != null) {
+
+
+                mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+
+                    @Override
+                    public void onMyLocationChange(Location arg0) {
+                        // TODO Auto-generated method stub
+
+                        mMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title("It's Me!"));
+                    }
+                });
+
+            }
+        }
+    }*/
 
     LocationCallback mLocationCallback = new LocationCallback(){
         @Override
