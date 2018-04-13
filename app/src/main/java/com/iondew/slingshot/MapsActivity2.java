@@ -1,8 +1,11 @@
 package com.iondew.slingshot;
 
+import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Looper;
+import android.os.VibrationEffect;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.os.Vibrator;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -24,6 +28,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
@@ -82,7 +87,8 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
             mMap.moveCamera(CameraUpdateFactory.newLatLng(presentLoc));
             //mMap.moveCamera(CameraUpdateFactory.newLatLng(mMap.));
             mLocationRequest = new LocationRequest();
-            mLocationRequest.setInterval(2000);
+            mLocationRequest.setSmallestDisplacement(50);
+            //mLocationRequest.setInterval(2000);
             mLocationRequest.setFastestInterval(2000);
             mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
@@ -103,27 +109,36 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
     public void showPath(Station destStation, Station myStation) {
         mMap.addMarker(new MarkerOptions().position(destStation.getCoordinates()).title(destStation.getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(destStation.getCoordinates(), 11));
-        mLocationRequest.setInterval(160000);
+        //mLocationRequest.setInterval(160000);
         Toast.makeText(this, "Added a marker for INA!", Toast.LENGTH_SHORT).show();
+        Vibrator v;
 
         PolylineOptions pathSoFar = new PolylineOptions();
-        pathSoFar.add(myStation.getCoordinates());
-        ArrayList<Station> bluesInBetween = new ArrayList<Station>();
+        ArrayList<Station> yellowsInBetween = new ArrayList<Station>();
         int spaces = destStation.getIndex() - myStation.getIndex();
-        if(spaces > 0) {
+        if(spaces < 0) {
             for(int i = destStation.getIndex(); i <= myStation.getIndex(); i++) {
-                bluesInBetween.add(sl.blue_stations.get(i));
+                yellowsInBetween.add(sl.yellow_stations.get(i));
+                pathSoFar.add(sl.yellow_stations.get(i).getCoordinates());
             }
-        } else if(spaces < 0) {
+        } else if(spaces > 0) {
             for(int i = destStation.getIndex(); i >= myStation.getIndex(); i++) {
-                bluesInBetween.add(sl.blue_stations.get(i));
+                yellowsInBetween.add(sl.yellow_stations.get(i));
+                pathSoFar.add(sl.yellow_stations.get(i).getCoordinates());
             }
         } else {
-            //yay
-            //at the mothafuckin destination
+            Toast.makeText(this, "Destination reached!", Toast.LENGTH_LONG).show();
+            v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            // Vibrate for 500 milliseconds
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                v.vibrate(VibrationEffect.createOneShot(1000,VibrationEffect.DEFAULT_AMPLITUDE));
+            }else{
+                //deprecated in API 26
+                v.vibrate(1000);
+            }
         }
 
-        pathSoFar.add(myStation.getCoordinates());
+        Polyline path = mMap.addPolyline(pathSoFar);
     }
 
     /*private void setUpMapIfNeeded() {
