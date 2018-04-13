@@ -55,18 +55,21 @@ public abstract class HelperClass {
         StationList sl = new StationList();
         ArrayList<Station> yellow_stations = sl.yellow_stations;
         Log.d(TAG, "Size of yellow " + yellow_stations.size());
-        System.out.println();
+        Station nearestStat = yellow_stations.get(0);
         double closestDist = getDistanceFromLatLonInM(yellow_stations.get(0).getCoordinates().latitude, yellow_stations.get(0).getCoordinates().longitude,
                 user.latitude, user.longitude);
         Log.d(TAG, "nearestMetro: Init");
         for (Station s: yellow_stations) {
+
             double dist = getDistanceFromLatLonInM(s.getCoordinates().latitude, s.getCoordinates().longitude, user.latitude, user.longitude);
             if(dist < closestDist) {
                 closestDist = dist;
                 //Toast.makeText(MapsActivity2, "Updated distance to \" + closestDist + \" for \" + s.getName()", Toast.LENGTH_SHORT).show();
-
+                Log.d(TAG, "nearestMetro: " + closestDist + s.getName() + "is nearest so far");
+                nearestStat = s;
             }
         }
+        Log.d(TAG, "nearestMetro: " + nearestStat.getName());
         return metroNearest;
     }
 }

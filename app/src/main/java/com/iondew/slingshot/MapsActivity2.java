@@ -27,7 +27,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
-    private static String TAG = "MAPTAG";
+    private static String TAG = "HELP";
     private GoogleMap mMap;
     private LocationManager locationManager;
     LocationRequest mLocationRequest;
@@ -80,6 +80,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
             mMap.setOnMyLocationClickListener(this);
             //calculate nearest metro
             LatLng nearest = HelperClass.nearestMetro(presentLoc);
+            Log.d(TAG, "onMapReady: " + presentLoc.longitude + " " + presentLoc.latitude);
             Toast.makeText(this, "Closest to  " + nearest.longitude + ", " + nearest.latitude, Toast.LENGTH_SHORT).show();
         } catch (SecurityException s) {
             Log.d(TAG, "onMapReady: SecurityException reached");
