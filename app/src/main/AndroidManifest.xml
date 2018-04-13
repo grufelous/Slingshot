@@ -56,6 +56,7 @@
         <activity
             android:name=".MapsActivity2"
             android:label="@string/title_activity_maps2" />
+        <activity android:name=".ListOfSatations"></activity>
     </application>
 
 </manifest>
