@@ -1,4 +1,8 @@
 package com.iondew.slingshot;
+import android.app.NotificationManager;
+import android.support.v4.app.NotificationCompat;
+import android.view.View;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.lang.Math;
@@ -14,7 +18,6 @@ public abstract class HelperClass {
         return lat*latFactor;
     }
     public static double lonToMeters(double lon) {
-       // Math.cos()
         return lon*lonFactor;
     }
 
