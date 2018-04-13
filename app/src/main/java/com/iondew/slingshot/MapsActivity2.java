@@ -144,10 +144,9 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                 mCurrLocationMarker = mMap.addMarker(markerOptions);
 
                 //move map camera
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
             }
-        };
-
+        }
     };
 
 

@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
     }
     /*private void addNotification(){
 
