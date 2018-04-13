@@ -35,9 +35,9 @@ public class StationList {
         temp.add(a);temp.add(b);temp.add(c);temp.add(d);
         return temp;
     }
-    ArrayList<Station> blue_stations= new ArrayList<Station>();
+    public static ArrayList<Station> blue_stations= new ArrayList<Station>();
 
-    ArrayList<Station> yellow_stations= new ArrayList<Station>();
+    public static ArrayList<Station> yellow_stations= new ArrayList<Station>();
     //ArrayList<String> colorList;
     StationList() {
         ArrayList<String> colorList;

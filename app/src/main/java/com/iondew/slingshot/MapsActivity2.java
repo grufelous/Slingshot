@@ -64,12 +64,10 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         try {
-
             LatLng presentLoc = new LatLng(-34, 151);
             mMap.addMarker(new MarkerOptions().position(presentLoc).title("Marker on you"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(presentLoc));
             //mMap.moveCamera(CameraUpdateFactory.newLatLng(mMap.));
-
             mLocationRequest = new LocationRequest();
             mLocationRequest.setInterval(2000);
             mLocationRequest.setFastestInterval(2000);
@@ -80,8 +78,9 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
             mMap.setMyLocationEnabled(true);
             mMap.setOnMyLocationButtonClickListener(this);
             mMap.setOnMyLocationClickListener(this);
-
-
+            //calculate nearest metro
+            LatLng nearest = HelperClass.nearestMetro(presentLoc);
+            Toast.makeText(this, "Closest to  " + nearest.longitude + ", " + nearest.latitude, Toast.LENGTH_SHORT).show();
         } catch (SecurityException s) {
             Log.d(TAG, "onMapReady: SecurityException reached");
         }
@@ -145,6 +144,8 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
 
                 //move map camera
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+
+
             }
         }
     };

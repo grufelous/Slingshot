@@ -16,10 +16,21 @@ public class Station {
     private ArrayList<String> colors = new ArrayList<>();
 
     public Station(int index, int numStations, String name, ArrayList<String> colors, double lat, double lon) {
-
+        this.index = index;
+        this.numStations = numStations;
+        this.name = name;
+        this.colors = colors;
+        this.coordinates = new LatLng(lat, lon);
+        if(colors.size() > 1) {
+            connector = true;
+        }
+        if((index == 0) || (numStations == index+1)) {
+            terminal = true;
+        }
     }
 
-    public Station(int i, int i1, boolean blue, double v, double v1) {
+    public String getName() {
+        return this.name;
     }
 
     public boolean isConnector() {
@@ -32,6 +43,10 @@ public class Station {
 
     public ArrayList<String> getColors() {
         return colors;
+    }
+
+    public LatLng getCoordinates() {
+        return coordinates;
     }
 
     public boolean isColor(String colorToCheck) {

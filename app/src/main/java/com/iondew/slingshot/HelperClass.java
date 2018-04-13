@@ -1,18 +1,22 @@
 package com.iondew.slingshot;
 import android.app.NotificationManager;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import java.lang.Math;
+import java.util.ArrayList;
 
 import static java.lang.Math.atan2;
+import static java.lang.Math.floor;
 import static java.lang.Math.sin;
 
 public abstract class HelperClass {
     private static double latFactor = 110567, lonFactor = 1;    //to convert the degrees to meters
-
+    private static String TAG = "HELP";
 
     public static double latToMeters(double lat) {
         return lat*latFactor;
@@ -30,7 +34,7 @@ public abstract class HelperClass {
                         Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
                                 sin(dLon / 2) * sin(dLon / 2);
         double c = 2 * atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double d = R * c; // Distance in km
+        double d = R * c; // Distance in m
         return d;
     }
 
@@ -44,5 +48,25 @@ public abstract class HelperClass {
             isItInBounds = true;
         }
         return isItInBounds;
+    }
+
+    public static LatLng nearestMetro(LatLng user) {
+        LatLng metroNearest = new LatLng(0,0);
+        StationList sl = new StationList();
+        ArrayList<Station> yellow_stations = sl.yellow_stations;
+        Log.d(TAG, "Size of yellow " + yellow_stations.size());
+        System.out.println();
+        double closestDist = getDistanceFromLatLonInM(yellow_stations.get(0).getCoordinates().latitude, yellow_stations.get(0).getCoordinates().longitude,
+                user.latitude, user.longitude);
+        Log.d(TAG, "nearestMetro: Init");
+        for (Station s: yellow_stations) {
+            double dist = getDistanceFromLatLonInM(s.getCoordinates().latitude, s.getCoordinates().longitude, user.latitude, user.longitude);
+            if(dist < closestDist) {
+                closestDist = dist;
+                //Toast.makeText(MapsActivity2, "Updated distance to \" + closestDist + \" for \" + s.getName()", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+        return metroNearest;
     }
 }
