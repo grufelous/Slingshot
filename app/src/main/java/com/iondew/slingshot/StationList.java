@@ -79,9 +79,28 @@ public class StationList {
         blue_stations.add(new Station(38,44,"Noida Sector-15",color_list_1("blue"),28.584933,77.311776));
         blue_stations.add(new Station(39,44,"Noida Sector-16", color_list_1("blue"),28.578542,77.317462));
         blue_stations.add(new Station(30,44,"Noida Sector-18", color_list_1("blue"),28.570813,77.326116));
-        blue_stations.add(new Station(41,44,"Botanical Garden",color_list_1("blue","pink"),28.56404,77.334269));
+        blue_stations.add(new Station(41,44,"Botanical Garden",color_list_2("blue","pink"),28.56404,77.334269));
         blue_stations.add(new Station(42,44,"Golf Course", color_list_1("blue"),28.567175,77.345992));
-        blue_stations.add(new Station(43,44,"Noida City Center", color_list_1("blue"),28.574744,77.356026));
-    }
+        blue_stations.add(new Station(43,44,"Noida City Center", color_list_1("blue"),28.,77.356026));
+}
 
+
+    ArrayList<Station> yellow_stations= new ArrayList<Station>();
+    ArrayList<String> colorList;
+    StationList() {
+        yellow_stations.add(new Station(44, 10, "Lok Kalyan Marg", color_list_1("yellow"), 28.5969129, 77.2108892));
+        yellow_stations.add(new Station(45, 10, "Jorbagh", color_list_1("yellow"), 28.5861923, 77.2116617));
+        yellow_stations.add(new Station(46, 10, "INA", color_list_1("yellow"), 28.5730116, 77.2077135));
+        yellow_stations.add(new Station(47, 10, "AIIMS", color_list_1("yellow"), 28.5668322, 77.2059262));
+        yellow_stations.add(new Station(48, 10, "Green Park", color_list_1("yellow"), 28.5613009, 77.2056579));
+        yellow_stations.add(new Station(49, 10, "Hauz Khas", color_list_1("yellow"), 28.5467976, 77.2069239));
+        yellow_stations.add(new Station(50, 10, "Malviya Nagar", color_list_1("yellow"), 28.5293231, 77.2045743));
+        yellow_stations.add(new Station(51, 10, "Saket", color_list_1("yellow"), 28.5219894, 77.2009265));
+        yellow_stations.add(new Station(52, 10, "Qutub Minar", color_list_1("yellow"), 28.5142875, 77.1868074));
+        yellow_stations.add(new Station(53, 10, "Chattarpur", color_list_1("yellow"), 28.5075953, 77.1754527));
+        yellow_stations.add(new Station(54, 10, "Sultanpur", color_list_1("yellow"), 28.4992649, 77.1591741));
+        yellow_stations.add(new Station(55, 10, "Ghittorni", color_list_1("yellow"), 28.4943713, 77.1490997));
+
+
+    }
 }
