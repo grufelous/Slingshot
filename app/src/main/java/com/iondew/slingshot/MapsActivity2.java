@@ -1,15 +1,14 @@
 package com.iondew.slingshot;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Looper;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -25,29 +24,43 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import java.util.ArrayList;
 
 public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
     private static String TAG = "HELP";
     private GoogleMap mMap;
     private LocationManager locationManager;
+    private Button pathFixed;
+    private Station myStation;
     LocationRequest mLocationRequest;
     Location mLastLocation;
     Marker mCurrLocationMarker;
     FusedLocationProviderClient mFusedLocationClient;
+    StationList sl = new StationList();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        myStation = sl.yellow_stations.get(7);
         setContentView(R.layout.activity_maps2);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-
+        pathFixed = findViewById(R.id.path_button);
+        pathFixed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Station fixedDemo = sl.yellow_stations.get(2);
+                showPath(fixedDemo, myStation);
+            }
+        });
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        //setUpMapIfNeeded();
-
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mapFragment.getMapAsync(this);
+
     }
 
 
@@ -85,8 +98,32 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         } catch (SecurityException s) {
             Log.d(TAG, "onMapReady: SecurityException reached");
         }
+    }
 
+    public void showPath(Station destStation, Station myStation) {
+        mMap.addMarker(new MarkerOptions().position(destStation.getCoordinates()).title(destStation.getName()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(destStation.getCoordinates(), 11));
+        mLocationRequest.setInterval(160000);
+        Toast.makeText(this, "Added a marker for INA!", Toast.LENGTH_SHORT).show();
 
+        PolylineOptions pathSoFar = new PolylineOptions();
+        pathSoFar.add(myStation.getCoordinates());
+        ArrayList<Station> bluesInBetween = new ArrayList<Station>();
+        int spaces = destStation.getIndex() - myStation.getIndex();
+        if(spaces > 0) {
+            for(int i = destStation.getIndex(); i <= myStation.getIndex(); i++) {
+                bluesInBetween.add(sl.blue_stations.get(i));
+            }
+        } else if(spaces < 0) {
+            for(int i = destStation.getIndex(); i >= myStation.getIndex(); i++) {
+                bluesInBetween.add(sl.blue_stations.get(i));
+            }
+        } else {
+            //yay
+            //at the mothafuckin destination
+        }
+
+        pathSoFar.add(myStation.getCoordinates());
     }
 
     /*private void setUpMapIfNeeded() {
@@ -116,7 +153,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                     public void onMyLocationChange(Location arg0) {
                         // TODO Auto-generated method stub
 
-                        mMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title("It's Me!"));
+                        mMap.showPath(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title("It's Me!"));
                     }
                 });
 

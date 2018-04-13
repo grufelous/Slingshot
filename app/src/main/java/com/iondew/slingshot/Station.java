@@ -57,6 +57,10 @@ public class Station {
         return isIt;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
     public boolean inBounds(LatLng userLoc) {
         boolean inBounds = false;
         inBounds = HelperClass.inBounds(userLoc, coordinates);

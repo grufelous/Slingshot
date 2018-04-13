@@ -72,4 +72,6 @@ public abstract class HelperClass {
         Log.d(TAG, "nearestMetro: " + nearestStat.getName());
         return metroNearest;
     }
+
+
 }

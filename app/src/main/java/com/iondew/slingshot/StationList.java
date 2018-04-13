@@ -86,18 +86,18 @@ public class StationList {
 
 
 
-        yellow_stations.add(new Station(44, 10, "Lok Kalyan Marg", color_list_1("yellow"), 28.5969129, 77.2108892));
-        yellow_stations.add(new Station(45, 10, "Jorbagh", color_list_1("yellow"), 28.5861923, 77.2116617));
-        yellow_stations.add(new Station(46, 10, "INA", color_list_1("yellow"), 28.5730116, 77.2077135));
-        yellow_stations.add(new Station(47, 10, "AIIMS", color_list_1("yellow"), 28.5668322, 77.2059262));
-        yellow_stations.add(new Station(48, 10, "Green Park", color_list_1("yellow"), 28.5613009, 77.2056579));
-        yellow_stations.add(new Station(49, 10, "Hauz Khas", color_list_1("yellow"), 28.5467976, 77.2069239));
-        yellow_stations.add(new Station(50, 10, "Malviya Nagar", color_list_1("yellow"), 28.5293231, 77.2045743));
-        yellow_stations.add(new Station(51, 10, "Saket", color_list_1("yellow"), 28.5219894, 77.2009265));
-        yellow_stations.add(new Station(52, 10, "Qutub Minar", color_list_1("yellow"), 28.5142875, 77.1868074));
-        yellow_stations.add(new Station(53, 10, "Chattarpur", color_list_1("yellow"), 28.5075953, 77.1754527));
-        yellow_stations.add(new Station(54, 10, "Sultanpur", color_list_1("yellow"), 28.4992649, 77.1591741));
-        yellow_stations.add(new Station(55, 10, "Ghittorni", color_list_1("yellow"), 28.4943713, 77.1490997));
+        yellow_stations.add(new Station(0, 12, "Lok Kalyan Marg", color_list_1("yellow"), 28.5969129, 77.2108892));
+        yellow_stations.add(new Station(1, 12, "Jorbagh", color_list_1("yellow"), 28.5861923, 77.2116617));
+        yellow_stations.add(new Station(2, 12, "INA", color_list_1("yellow"), 28.5752115, 77.2072763));
+        yellow_stations.add(new Station(3, 12, "AIIMS", color_list_1("yellow"), 28.5668322, 77.2059262));
+        yellow_stations.add(new Station(4, 12, "Green Park", color_list_1("yellow"), 28.5613009, 77.2056579));
+        yellow_stations.add(new Station(5, 12, "Hauz Khas", color_list_1("yellow"), 28.5467976, 77.2069239));
+        yellow_stations.add(new Station(6, 12, "Malviya Nagar", color_list_1("yellow"), 28.5293231, 77.2045743));
+        yellow_stations.add(new Station(7, 12, "Saket", color_list_1("yellow"), 28.5219894, 77.2009265));
+        yellow_stations.add(new Station(8, 12, "Qutub Minar", color_list_1("yellow"), 28.5142875, 77.1868074));
+        yellow_stations.add(new Station(9, 12, "Chattarpur", color_list_1("yellow"), 28.5075953, 77.1754527));
+        yellow_stations.add(new Station(10, 12, "Sultanpur", color_list_1("yellow"), 28.4992649, 77.1591741));
+        yellow_stations.add(new Station(11, 12, "Ghittorni", color_list_1("yellow"), 28.4943713, 77.1490997));
 }
 
 
