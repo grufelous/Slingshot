@@ -1,12 +1,6 @@
 package com.iondew.slingshot;
 
-import android.support.annotation.NonNull;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Created by aneeshkundu on 13/04/18.
@@ -84,8 +78,6 @@ public class StationList {
         blue_stations.add(new Station(42,44,"Golf Course", color_list_1("blue"),28.567175,77.345992));
         blue_stations.add(new Station(43,44,"Noida City Center", color_list_1("blue"),28.,77.356026));
 
-
-
         yellow_stations.add(new Station(0, 12, "Lok Kalyan Marg", color_list_1("yellow"), 28.5969129, 77.2108892));
         yellow_stations.add(new Station(1, 12, "Jorbagh", color_list_1("yellow"), 28.5861923, 77.2116617));
         yellow_stations.add(new Station(2, 12, "INA", color_list_1("yellow"), 28.5752115, 77.2072763));
@@ -98,7 +90,7 @@ public class StationList {
         yellow_stations.add(new Station(9, 12, "Chattarpur", color_list_1("yellow"), 28.5075953, 77.1754527));
         yellow_stations.add(new Station(10, 12, "Sultanpur", color_list_1("yellow"), 28.4992649, 77.1591741));
         yellow_stations.add(new Station(11, 12, "Ghittorni", color_list_1("yellow"), 28.4943713, 77.1490997));
-}
+    }
 
 
 

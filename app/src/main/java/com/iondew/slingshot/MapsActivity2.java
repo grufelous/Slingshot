@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.os.Vibrator;
 
@@ -39,13 +40,16 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
     private LocationManager locationManager;
     private Button pathFixed;
     private Station myStation;
+    private Spinner fromSpinner, toSpinner;
     LocationRequest mLocationRequest;
     Location mLastLocation;
     Marker mCurrLocationMarker;
     FusedLocationProviderClient mFusedLocationClient;
     StationList sl = new StationList();
 
+    private void initSpinner() {
 
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +58,8 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
+
         pathFixed = findViewById(R.id.path_button);
         pathFixed.setOnClickListener(new View.OnClickListener() {
             @Override
